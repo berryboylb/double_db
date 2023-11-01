@@ -1,23 +1,21 @@
 version: "3"
 services:
-  websocket1:
-    container_name: uptick_week_7
+  uptick:
+    container_name: test
     build:
-      context: ./dist
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8000:8000"  # Map container port 4000 to host port 4001
     expose:
       - "8000"
-    env_file:
-      - .env
     environment:
       - NODE_ENV=production
       - MONGODB_DATABASE_URL=mongodb://mongodb:27017/uptick
       - MYSQL_DATABASE_URL=mysql://root:root@mysql:3306/uptick_6
-    volumes:
-      - .:/app
-    command: ["npm", "dev"]
+    # volumes:
+    #   - .:/app
+    command: ["npm", "run", "dev"]
     depends_on:
       - mongodb
       - mysql
@@ -38,7 +36,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: uptick_6
-      MYSQL_USER: root
+      MYSQL_USER: joyboy
       MYSQL_PASSWORD: root
     volumes:
       - ./mysql-data:/var/lib/mysql  # Persist MySQL data
+ 
+    

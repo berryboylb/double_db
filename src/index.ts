@@ -1,6 +1,5 @@
 import express, { Express, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
-import bodyParser from "body-parser";
 import cors from "cors";
 import limiter from "./middleware/ratelimiter";
 import routes from "./routes";
@@ -10,8 +9,6 @@ dotenv.config();
 const port = process.env.PORT || 8000;
 const app: Express = express();
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ extended: false } as any));
 app.use(limiter());
 app.use(logger);
