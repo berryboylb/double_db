@@ -1,5 +1,5 @@
 {
-  "name": "bankapp",
+  "name": "doubledb",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,6 +20,8 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.5.2",
+    "@sentry/node": "^7.81.1",
+    "@sentry/profiling-node": "^1.2.6",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
