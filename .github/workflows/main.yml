@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      MONGODB_DATABASE_URL: ${{ secrets.MONGODB_DATABASE_URL }}
+      MYSQL_DATABASE_URL: ${{ secrets.MYSQL_DATABASE_URL }}
 
     steps:
     - name: Checkout Repository
