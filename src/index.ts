@@ -22,6 +22,17 @@ app.get("/", (_req: Request, res: Response) => {
 app.use(errorResponder);
 app.use(invalidPathHandler);
 
-app.listen(port, () => {
-  console.log(`now listening on port ${port}`);
-});
+if (!module.parent) {
+  const server = app.listen(port, () => {
+    console.log(`now listening on port ${port}`);
+  });
+
+  process.on("SIGTERM", () => {
+    server.close(() => {
+      console.log("Server closed");
+      process.exit(0);
+    });
+  });
+}
+
+export default app;
