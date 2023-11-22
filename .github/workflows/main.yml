@@ -19,16 +19,14 @@ jobs:
     - name: Set Up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 20
+        node-version: '20'
 
-    - name: Install Dependencies
+    - name: Install Dependencies and Run Tests
       run: |
         npm install
         npm run mongo:generate
         npm run mongo:dbpush
-
-    - name: Run Tests
-      run: npm run test
+        npm run test
 
   deploy:
     runs-on: ubuntu-latest
@@ -37,6 +35,9 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
     - name: Deploy to Production
-      run: |
-        npm run start
+      run: npm run start
+
